@@ -1,3 +1,7 @@
+var legend_width = 72;
+var legend_height = 24;
+var top_margin = 24;
+
 function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     
     const timestep = 10; //time in seconds
@@ -30,9 +34,9 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
 
     //graph dimensions
     var grid_size = 16;
-    svg.attr("width", buckets.length*grid_size)
-        .attr("height", buckets[0].length*grid_size);
     var colors = ['#f7fcf0','#e0f3db','#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe','#0868ac','#084081'];
+    svg.attr("width", Math.max(buckets.length*grid_size, legend_width*colors.length))
+        .attr("height", buckets[0].length*grid_size + top_margin + legend_height);
 
     //create grid squares
     var colorScale = d3.scale.quantile()
@@ -51,6 +55,21 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
                 .attr("fill", colorScale(buckets[x][buckets[x].length-y]));
         }
     }
+    
+    //create legend
+    var thresholds = [0].concat(colorScale.quantiles());
+    for(var i = 0; i < colors.length; i++){
+        svg.append("rect")
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin)
+            .attr("width", legend_width)
+            .attr("height", legend_height)
+            .attr("fill", colors[i]);
+        svg.append("text")
+            .text("≥ "+Math.round(thresholds[i]))
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin - 9)
+            .attr("class", "mono");
 }
 
 function map_mouse_clicks(mouse_data, level, svg){
