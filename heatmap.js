@@ -32,7 +32,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     var grid_size = 16;
     svg.attr("width", buckets.length*grid_size)
         .attr("height", buckets[0].length*grid_size);
-    var colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'];
+    var colors = ['#f7fcf0','#e0f3db','#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe','#0868ac','#084081'];
 
     //create grid squares
     var colorScale = d3.scale.quantile()
