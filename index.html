@@ -9,8 +9,6 @@
 		<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="https://d3js.org/topojson.v1.min.js"></script>
 		<script src="heatmap.js"></script>
-		<script src="burnout.js"></script>
-		<script src="histogram.js"></script>
 		<script src="player_action.parser.js"></script>
 		<script src="get_params.js"></script>
 	</head>
@@ -30,13 +28,9 @@
 		var normal = isNormalized();
 
 		d3.json("data.v4.json", function(data) {
-			var player_quests = data.player_quests; 
 			var mouse_press = parseAct(data, 1);
 			var mouse_release = parseAct(data, 2);
-			var hp_decrease = parseAct(data, 3);
-			var wave_start = parseAct(data, 4);
 			var tower_create = parseAct(data, 5);
-			var game_over = parseAct(data, 6);
 
 			var tower_metrics = map_tower_spatial(tower_create, level, tower_spatial, normal);
 			map_tower_temporal(tower_create, level, tower_temporal, tower_metrics[0], tower_metrics[1]);
