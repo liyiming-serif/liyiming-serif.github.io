@@ -1,15 +1,16 @@
 function create_heatmap(mouse_press, mouse_release, tower_create, svg) { 
+    map_tower_spatial(tower_create, 0, svg);
+}
+
+function map_tower_temporal(tower_data, level, svg){
+
+}
+
+function map_tower_spatial(tower_data, level, svg){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
-	const snap = 64;
-
-    //graph dimensions
-    var scale = 0.5;
-    svg.attr("width", GAME_WIDTH*scale)
-        .attr("height", GAME_HEIGHT*scale);
-    var grid_size = snap*scale;
-    var colors = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'];
+    const snap = 64;
     
     //bucketize data
     var buckets = new Array(Math.floor(GAME_HEIGHT/snap));
@@ -21,14 +22,29 @@ function create_heatmap(mouse_press, mouse_release, tower_create, svg) {
     }
     var max_bucket_val = 0;
 
-    for (var i = 0; i<tower_create.length; i++){
-        var x = Math.floor(tower_create[i]["X"]/snap);
-        var y = Math.floor(tower_create[i]["Y"]/snap);
-        buckets[y][x] += 1; 
-        if(buckets[y][x] > max_bucket_val){
-            max_bucket_val = buckets[y][x];
+    for (var i = 0; i<tower_data.length; i++){
+        if(tower_data[i]["Level"] == level){
+            var x = Math.floor(tower_data[i]["X"]/snap);
+            var y = Math.floor(tower_data[i]["Y"]/snap);
+            if(y>=buckets.length){
+                y = buckets.length-1;
+            }
+            if(x>=buckets[y].length){
+                x = buckets[y].length-1;
+            }
+
+            buckets[y][x] += tower_data[i]["Materials"]; 
+            if(buckets[y][x] > max_bucket_val){
+                max_bucket_val = buckets[y][x];
+            }
         }
     }
+
+    //graph dimensions
+    var grid_size = 32;
+    svg.attr("width", buckets[0].length*grid_size)
+        .attr("height", buckets.length*grid_size);
+    var colors = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'];
 
     //create grid squares
     var colorScale = d3.scale.quantile()
