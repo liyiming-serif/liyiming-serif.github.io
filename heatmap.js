@@ -19,10 +19,10 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
                 t = buckets.length-1;
             }
             
-            for (var j = 0; j < tower_data[i]["Materials"]; j++){
-                buckets[i][j] += 1;
-                if(buckets[i][j] > max_bucket_val){
-                    max_bucket_val = buckets[i][j];
+            for (var h = 0; h < tower_data[i]["Materials"]; h++){
+                buckets[t][h] += 1;
+                if(buckets[t][h] > max_bucket_val){
+                    max_bucket_val = buckets[t][h];
                 }
             }
         }
