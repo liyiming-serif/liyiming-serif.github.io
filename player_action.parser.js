@@ -40,7 +40,7 @@ function parseAct(data, actType){
 
     //collect start time info on players
     var player_starttime = {};
-    var player_logs = JSON.parse(data)["page_loads"];
+    var player_logs = data["page_loads"];
     for(var i = 0; i < player_logs.length; i++){
         var player = player_logs[i]["user_id"];
         var starttime = parseInt(player_logs[i]["server_timestamp"]);
