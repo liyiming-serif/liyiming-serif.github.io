@@ -32,7 +32,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     var grid_size = 16;
     svg.attr("width", buckets.length*grid_size)
         .attr("height", buckets[0].length*grid_size);
-    var colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'];
+    var colors = ['#f7fcf0','#e0f3db','#ccebc5','#a8ddb5','#7bccc4','#4eb3d3','#2b8cbe','#0868ac','#084081'];
 
     //create grid squares
     var colorScale = d3.scale.quantile()
@@ -91,7 +91,7 @@ function map_mouse_clicks(mouse_data, level, svg){
     var grid_size = 16;
     svg.attr("width", buckets[0].length*grid_size)
         .attr("height", buckets.length*grid_size);
-    var colors = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'];
+    var colors = ['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#bd0026','#800026'];
 
     //create grid squares
     var colorScale = d3.scale.quantile()
