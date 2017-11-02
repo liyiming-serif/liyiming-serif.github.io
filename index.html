@@ -1,1 +1,63 @@
-Test website, please ignore.
+<html> 
+	<head>
+		<style>
+			svg {border: 1px solid black;}
+			.axis path {fill: none; stroke: black; shape-rendering: none;}
+			.axis line {stroke: black;}
+			.axis text {font-size: 10pt;}
+		</style>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="http://d3js.org/topojson.v1.min.js"></script>
+		<script src="heatmap.js"></script>
+		<script src="burnout.js"></script>
+		<script src="histogram.js"></script>
+		<script src="player_action.parser.js"></script>
+	</head>
+
+	<p> D3 </p> 
+
+	<svg id = "svg1" height= "200" width = "200"> </svg>
+	<svg id = "svg2" height= "500" width = "500"> </svg>
+	<svg id = "svg3" height= "200" width = "200"> </svg>
+	<svg id = "svg4" height= "200" width = "200"> </svg>
+
+	<script> 
+		var heatmap = d3.select("#svg1"); 
+		var height = heatmap.attr("height"); 
+		var width = heatmap.attr("width");
+
+		var burnout = d3.select("#svg2"); 
+		var height = burnout.attr("height"); 
+		var width = burnout.attr("width");
+
+		var histogram = d3.select("#svg3"); 
+		var height = histogram.attr("height"); 
+		var width = histogram.attr("width");
+
+		d3.json("data.v4.json", function(data) {
+			var player_quests = data.player_quests; 
+			var mouse_press = parseAct(data, 1);
+			var mouse_release = parseAct(data, 2);
+			var hp_decrease = parseAct(data, 3);
+			var wave_start = parseAct(data, 4);
+			var tower_create = parseAct(data, 5);
+			var game_over = parseAct(data, 6);
+
+			create_heatmap(mouse_press, mouse_release, tower_create, heatmap);
+			//create_burnout(game_over, burnout);
+			//create_histogram(player_quests, histogram);
+
+		});
+
+		d3.csv("data.csv", function(data) {
+		});
+
+
+
+	
+	</script> 
+
+
+
+</html> 
+
