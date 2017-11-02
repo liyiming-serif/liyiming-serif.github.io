@@ -30,8 +30,8 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
 
     //graph dimensions
     var grid_size = 16;
-    svg.attr("width", buckets[0].length*grid_size)
-        .attr("height", buckets.length*grid_size);
+    svg.attr("width", buckets.length*grid_size)
+        .attr("height", buckets[0].length*grid_size);
     var colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'];
 
     //create grid squares
@@ -40,7 +40,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
         .range(colors);
 
     for(var x = 0; x < buckets.length; x++){
-        for(var y = 0; y < buckets[x].length; y++){
+        for(var y = buckets[x].length; y > 0; y--){
             svg.append("rect")
                 .attr("x", x*grid_size)
                 .attr("y", y*grid_size)
@@ -48,7 +48,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
                 .attr("height", grid_size)
                 .attr("rx", 4)
                 .attr("ry", 4)
-                .attr("fill", colorScale(buckets[x][y]));
+                .attr("fill", colorScale(buckets[x][buckets[x].length-y]));
         }
     }
 }
