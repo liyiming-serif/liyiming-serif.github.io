@@ -1,5 +1,5 @@
 function create_heatmap(mouse_press, mouse_release, tower_create, svg) { 
-    map_mouse_tutorial_clicks(mouse_release, svg);
+    map_mouse_tutorial_clicks(mouse_release, 5, svg);
 }
 
 function map_tower_temporal(tower_data, level, svg){
@@ -23,7 +23,7 @@ function map_mouse_tutorial_clicks(mouse_data, level, svg){
     var max_bucket_val = 0;
     //fill buckets with mouse_release data
     for (var i = 0; i<mouse_data.length; i++){
-        if(mouse_data[i]["Level"] == 0){
+        if(mouse_data[i]["Level"] == level){
             var x = Math.floor(mouse_data[i]["X"]/snap);
             var y = Math.floor(mouse_data[i]["Y"]/snap);
             if(y>=buckets.length){
