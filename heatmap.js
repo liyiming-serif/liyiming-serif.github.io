@@ -12,10 +12,9 @@ function create_heatmap(mouse_press, mouse_release, tower_create, svg) {
     var colors = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'];
     
     //bucketize data
-    console.log(GAME_HEIGHT/snap);
-    var buckets = new Array(GAME_HEIGHT/snap);
+    var buckets = new Array(Math.floor(GAME_HEIGHT/snap));
     for (var i = 0; i < buckets.length; i++){
-        buckets[i] = new Array(GAME_WIDTH/snap);
+        buckets[i] = new Array(Math.floor(GAME_WIDTH/snap));
         for(var j = 0; j < buckets[i].length; j++){
             buckets[i][j] = 0;
         }
@@ -23,8 +22,8 @@ function create_heatmap(mouse_press, mouse_release, tower_create, svg) {
     var max_bucket_val = 0;
 
     for (var i = 0; i<tower_create.length; i++){
-        var x = tower_create[i]["X"]/snap;
-        var y = tower_create[i]["Y"]/snap;
+        var x = Math.floor(tower_create[i]["X"]/snap);
+        var y = Math.floor(tower_create[i]["Y"]/snap);
         buckets[y][x] += 1; 
         if(buckets[y][x] > max_bucket_val){
             max_bucket_val = buckets[y][x];
