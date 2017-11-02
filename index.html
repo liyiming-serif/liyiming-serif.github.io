@@ -19,20 +19,11 @@
 	<svg id = "svg1" height= "200" width = "200"> </svg>
 	<svg id = "svg2" height= "500" width = "500"> </svg>
 	<svg id = "svg3" height= "200" width = "200"> </svg>
-	<svg id = "svg4" height= "200" width = "200"> </svg>
 
 	<script> 
 		var tower_spatial = d3.select("#svg1"); 
-		var height = tower_spatial.attr("height"); 
-		var width = tower_spatial.attr("width");
-
 		var tower_temporal = d3.select("#svg2"); 
-		var height = tower_temporal.attr("height"); 
-		var width = tower_temporal.attr("width");
-
-		var histogram = d3.select("#svg3"); 
-		var height = histogram.attr("height"); 
-		var width = histogram.attr("width");
+		var mouse_clicks = d3.select("#svg3");
 
 		d3.json("data.v4.json", function(data) {
 			var player_quests = data.player_quests; 
@@ -45,7 +36,7 @@
 
 			var tower_metrics = map_tower_spatial(tower_create, 5, tower_spatial, false);
 			map_tower_temporal(tower_create, 5, tower_temporal, tower_metrics[0], tower_metrics[1]);
-			//create_histogram(player_quests, histogram);
+			map_mouse_clicks(mouse_release, 5, mouse_clicks);
 
 		});
 
