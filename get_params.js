@@ -3,7 +3,8 @@
 
 function isNormalized(){
     var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
+    var regex = /[\&\?]/;
+    var sURLVariables = sPageURL.split(regex);
     for (var i = 0; i < sURLVariables.length; i++) 
     {
         var sParameterName = sURLVariables[i].split('=');
@@ -20,7 +21,8 @@ function isNormalized(){
 
 function getLevel(){
     var sPageURL = window.location.search.substring(1);
-    var sURLVariables = sPageURL.split('&');
+    var regex = /[\&\?]/;
+    var sURLVariables = sPageURL.split(regex);
     for (var i = 0; i < sURLVariables.length; i++) 
     {
         var sParameterName = sURLVariables[i].split('=');
