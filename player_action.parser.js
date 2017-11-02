@@ -39,16 +39,16 @@ function parseAct(data, actType){
     }
 
     //collect start time info on players
-    var player_starttime = {};
-    var player_logs = data["page_loads"];
-    for(var i = 0; i < player_logs.length; i++){
-        var player = player_logs[i]["user_id"];
-        var starttime = parseInt(player_logs[i]["server_timestamp"]);
-        if(!player_starttime.hasOwnProperty(player)){
-            player_starttime[player] = starttime;
+    var level_starttime = {};
+    var level_logs = JSON.parse(data)["player_quests"];
+    for(var i = 0; i < level_logs.length; i++){
+        var quest = level_logs[i]["dynamic_quest_id"];
+        var starttime = parseInt(level_logs[i]["server_timestamp"]);
+        if(!level_starttime.hasOwnProperty(quest)){
+            level_starttime[quest] = starttime;
         }
-        else if(player_starttime[player]>starttime){
-            player_starttime[player] = starttime;
+        else if(level_starttime[quest]>starttime){
+            level_starttime[quest] = starttime;
         }
     }
 
@@ -59,8 +59,8 @@ function parseAct(data, actType){
             var entry = {};
             var entryValues = input[i]["action detail"].split(regex);
 
-            var player = input[i]["user_id"];
-            entry[fields[0]] = parseInt(input[i]["log_timestamp"])-player_starttime[player];
+            var quest = input[i]["dynamic quest id"];
+            entry[fields[0]] = parseInt(input[i]["log_timestamp"])-level_starttime[quest];
             for(var j = 1; j < fields.length; j++){
                 if(isNaN(parseInt(entryValues[j]))){
                     entry[fields[j]] = entryValues[j];
