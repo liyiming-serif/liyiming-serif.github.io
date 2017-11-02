@@ -1,116 +1,116 @@
-function map_tower_temporal(tower_data, level, svg, max_time, max_height){
+// function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     
-    const timestep = 10; //time in seconds
+//     const timestep = 10; //time in seconds
     
-    //bucketize data: initialize 2d spatial bucket
-    var buckets = new Array(Math.floor(max_time/timestep));
-    for (var i = 0; i < buckets.length; i++){
-        buckets[i] = new Array(max_height);
-        for(var j = 0; j < buckets[i].length; j++){
-            buckets[i][j] = 0;
-        }
-    }
-    var max_bucket_val = 0;
-    //fill buckets with tower data
-    for (var i = 0; i<tower_data.length; i++){
-        if(tower_data[i]["Level"] == level){
-            var t = Math.floor(tower_data[i]["Time"]/timestep);
-            if(t>=buckets.length){
-                t = buckets.length-1;
-            }
+//     //bucketize data: initialize 2d spatial bucket
+//     var buckets = new Array(Math.floor(max_time/timestep));
+//     for (var i = 0; i < buckets.length; i++){
+//         buckets[i] = new Array(max_height);
+//         for(var j = 0; j < buckets[i].length; j++){
+//             buckets[i][j] = 0;
+//         }
+//     }
+//     var max_bucket_val = 0;
+//     //fill buckets with tower data
+//     for (var i = 0; i<tower_data.length; i++){
+//         if(tower_data[i]["Level"] == level){
+//             var t = Math.floor(tower_data[i]["Time"]/timestep);
+//             if(t>=buckets.length){
+//                 t = buckets.length-1;
+//             }
             
-            for (int j = 0; j < tower_data[i]["Materials"]; j++){
-                buckets[i][j] += 1;
-                if(buckets[i][j] > max_bucket_val){
-                    max_bucket_val = buckets[i][j];
-                }
-            }
-        }
-    }
+//             for (var j = 0; j < tower_data[i]["Materials"]; j++){
+//                 buckets[i][j] += 1;
+//                 if(buckets[i][j] > max_bucket_val){
+//                     max_bucket_val = buckets[i][j];
+//                 }
+//             }
+//         }
+//     }
 
-    //graph dimensions
-    var grid_size = 16;
-    svg.attr("width", buckets[0].length*grid_size)
-        .attr("height", buckets.length*grid_size);
-    var colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'];
+//     //graph dimensions
+//     var grid_size = 16;
+//     svg.attr("width", buckets[0].length*grid_size)
+//         .attr("height", buckets.length*grid_size);
+//     var colors = ['#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58'];
 
-    //create grid squares
-    var colorScale = d3.scale.quantile()
-        .domain([0, colors.length-1, max_bucket_val])
-        .range(colors);
+//     //create grid squares
+//     var colorScale = d3.scale.quantile()
+//         .domain([0, colors.length-1, max_bucket_val])
+//         .range(colors);
 
-    for(var x = 0; x < buckets.length; x++){
-        for(var y = 0; y < buckets[x].length; y++){
-            svg.append("rect")
-                .attr("x", x*grid_size)
-                .attr("y", y*grid_size)
-                .attr("width", grid_size)
-                .attr("height", grid_size)
-                .attr("rx", 4)
-                .attr("ry", 4)
-                .attr("fill", colorScale(buckets[x][y]));
-        }
-    }
-}
+//     for(var x = 0; x < buckets.length; x++){
+//         for(var y = 0; y < buckets[x].length; y++){
+//             svg.append("rect")
+//                 .attr("x", x*grid_size)
+//                 .attr("y", y*grid_size)
+//                 .attr("width", grid_size)
+//                 .attr("height", grid_size)
+//                 .attr("rx", 4)
+//                 .attr("ry", 4)
+//                 .attr("fill", colorScale(buckets[x][y]));
+//         }
+//     }
+// }
 
-function map_mouse_tutorial_clicks(mouse_data, level, svg){
-    //game dimensions
-    const GAME_WIDTH = 960;
-    const GAME_HEIGHT = 720;
-    const snap = 32;
+// function map_mouse_tutorial_clicks(mouse_data, level, svg){
+//     //game dimensions
+//     const GAME_WIDTH = 960;
+//     const GAME_HEIGHT = 720;
+//     const snap = 32;
     
-    //bucketize data: initialize 2d spatial bucket
-    var buckets = new Array(Math.floor(GAME_HEIGHT/snap));
-    for (var i = 0; i < buckets.length; i++){
-        buckets[i] = new Array(Math.floor(GAME_WIDTH/snap));
-        for(var j = 0; j < buckets[i].length; j++){
-            buckets[i][j] = 0;
-        }
-    }
-    var max_bucket_val = 0;
-    //fill buckets with mouse_release data
-    for (var i = 0; i<mouse_data.length; i++){
-        if(mouse_data[i]["Level"] == level){
-            var x = Math.floor(mouse_data[i]["X"]/snap);
-            var y = Math.floor(mouse_data[i]["Y"]/snap);
-            if(y>=buckets.length){
-                y = buckets.length-1;
-            }
-            if(x>=buckets[y].length){
-                x = buckets[y].length-1;
-            }
+//     //bucketize data: initialize 2d spatial bucket
+//     var buckets = new Array(Math.floor(GAME_HEIGHT/snap));
+//     for (var i = 0; i < buckets.length; i++){
+//         buckets[i] = new Array(Math.floor(GAME_WIDTH/snap));
+//         for(var j = 0; j < buckets[i].length; j++){
+//             buckets[i][j] = 0;
+//         }
+//     }
+//     var max_bucket_val = 0;
+//     //fill buckets with mouse_release data
+//     for (var i = 0; i<mouse_data.length; i++){
+//         if(mouse_data[i]["Level"] == level){
+//             var x = Math.floor(mouse_data[i]["X"]/snap);
+//             var y = Math.floor(mouse_data[i]["Y"]/snap);
+//             if(y>=buckets.length){
+//                 y = buckets.length-1;
+//             }
+//             if(x>=buckets[y].length){
+//                 x = buckets[y].length-1;
+//             }
 
-            buckets[y][x] += 1; 
-            if(buckets[y][x] > max_bucket_val){
-                max_bucket_val = buckets[y][x];
-            }
-        }
-    }
+//             buckets[y][x] += 1; 
+//             if(buckets[y][x] > max_bucket_val){
+//                 max_bucket_val = buckets[y][x];
+//             }
+//         }
+//     }
 
-    //graph dimensions
-    var grid_size = 16;
-    svg.attr("width", buckets[0].length*grid_size)
-        .attr("height", buckets.length*grid_size);
-    var colors = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'];
+//     //graph dimensions
+//     var grid_size = 16;
+//     svg.attr("width", buckets[0].length*grid_size)
+//         .attr("height", buckets.length*grid_size);
+//     var colors = ['#ffffe5','#f7fcb9','#d9f0a3','#addd8e','#78c679','#41ab5d','#238443','#006837','#004529'];
 
-    //create grid squares
-    var colorScale = d3.scale.quantile()
-        .domain([0, colors.length-1, max_bucket_val])
-        .range(colors);
+//     //create grid squares
+//     var colorScale = d3.scale.quantile()
+//         .domain([0, colors.length-1, max_bucket_val])
+//         .range(colors);
 
-    for(var y = 0; y < buckets.length; y++){
-        for(var x = 0; x < buckets[y].length; x++){
-            svg.append("rect")
-                .attr("x", x*grid_size)
-                .attr("y", y*grid_size)
-                .attr("width", grid_size)
-                .attr("height", grid_size)
-                .attr("rx", 4)
-                .attr("ry", 4)
-                .attr("fill", colorScale(buckets[y][x]));
-        }
-    }
-}
+//     for(var y = 0; y < buckets.length; y++){
+//         for(var x = 0; x < buckets[y].length; x++){
+//             svg.append("rect")
+//                 .attr("x", x*grid_size)
+//                 .attr("y", y*grid_size)
+//                 .attr("width", grid_size)
+//                 .attr("height", grid_size)
+//                 .attr("rx", 4)
+//                 .attr("ry", 4)
+//                 .attr("fill", colorScale(buckets[y][x]));
+//         }
+//     }
+// }
 
 function map_tower_spatial(tower_data, level, svg, normalizeHeight){
     //game dimensions
