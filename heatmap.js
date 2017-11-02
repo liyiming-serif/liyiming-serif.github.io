@@ -43,7 +43,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
         for(var y = buckets[x].length; y > 0; y--){
             svg.append("rect")
                 .attr("x", x*grid_size)
-                .attr("y", y*grid_size)
+                .attr("y", (y-1)*grid_size)
                 .attr("width", grid_size)
                 .attr("height", grid_size)
                 .attr("rx", 4)
