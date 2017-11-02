@@ -70,6 +70,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
             .attr("x", i*legend_width)
             .attr("y", buckets[0].length*grid_size + top_margin - 9)
             .attr("class", "mono");
+    }
 }
 
 function map_mouse_clicks(mouse_data, level, svg){
