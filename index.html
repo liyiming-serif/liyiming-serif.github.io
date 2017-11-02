@@ -12,6 +12,7 @@
 		<script src="burnout.js"></script>
 		<script src="histogram.js"></script>
 		<script src="player_action.parser.js"></script>
+		<script src="get_level.js"></script>
 	</head>
 
 	<p> D3 </p> 
@@ -25,6 +26,8 @@
 		var tower_temporal = d3.select("#svg2"); 
 		var mouse_clicks = d3.select("#svg3");
 
+		var level = getLevel();
+
 		d3.json("data.v4.json", function(data) {
 			var player_quests = data.player_quests; 
 			var mouse_press = parseAct(data, 1);
@@ -34,9 +37,9 @@
 			var tower_create = parseAct(data, 5);
 			var game_over = parseAct(data, 6);
 
-			var tower_metrics = map_tower_spatial(tower_create, 5, tower_spatial, false);
-			map_tower_temporal(tower_create, 5, tower_temporal, tower_metrics[0], tower_metrics[1]);
-			map_mouse_clicks(mouse_release, 5, mouse_clicks);
+			var tower_metrics = map_tower_spatial(tower_create, level, tower_spatial, false);
+			map_tower_temporal(tower_create, level, tower_temporal, tower_metrics[0], tower_metrics[1]);
+			map_mouse_clicks(mouse_release, level, mouse_clicks);
 
 		});
 
