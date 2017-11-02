@@ -68,7 +68,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
         svg.append("text")
             .text("≥ "+Math.round(thresholds[i]))
             .attr("x", i*legend_width)
-            .attr("y", buckets[0].length*grid_size + top_margin - 9)
+            .attr("y", buckets[0].length*grid_size + top_margin - 5)
             .attr("class", "mono");
     }
 }
@@ -129,6 +129,22 @@ function map_mouse_clicks(mouse_data, level, svg){
                 .attr("ry", 4)
                 .attr("fill", colorScale(buckets[y][x]));
         }
+    }
+    
+    //create legend
+    var thresholds = [0].concat(colorScale.quantiles());
+    for(var i = 0; i < colors.length; i++){
+        svg.append("rect")
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin)
+            .attr("width", legend_width)
+            .attr("height", legend_height)
+            .attr("fill", colors[i]);
+        svg.append("text")
+            .text("≥ "+Math.round(thresholds[i]))
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin - 5)
+            .attr("class", "mono");
     }
 }
 
@@ -196,6 +212,22 @@ function map_tower_spatial(tower_data, level, svg, normalizeHeight){
                 .attr("ry", 4)
                 .attr("fill", colorScale(buckets[y][x]));
         }
+    }
+    
+    //create legend
+    var thresholds = [0].concat(colorScale.quantiles());
+    for(var i = 0; i < colors.length; i++){
+        svg.append("rect")
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin)
+            .attr("width", legend_width)
+            .attr("height", legend_height)
+            .attr("fill", colors[i]);
+        svg.append("text")
+            .text("≥ "+Math.round(thresholds[i]))
+            .attr("x", i*legend_width)
+            .attr("y", buckets[0].length*grid_size + top_margin - 5)
+            .attr("class", "mono");
     }
     
     return [max_time, max_height];
