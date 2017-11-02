@@ -12,6 +12,7 @@ function create_heatmap(mouse_press, mouse_release, tower_create, svg) {
     var colors = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'];
     
     //bucketize data
+    console.log(GAME_HEIGHT/snap);
     var buckets = new Array(GAME_HEIGHT/snap);
     for (var i = 0; i < buckets.length; i++){
         buckets[i] = new Array(GAME_WIDTH/snap);
