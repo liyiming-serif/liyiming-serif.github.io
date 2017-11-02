@@ -22,11 +22,11 @@
 	<svg id = "svg4" height= "200" width = "200"> </svg>
 
 	<script> 
-		var heatmap = d3.select("#svg1"); 
+		var tower_spatial = d3.select("#svg1"); 
 		var height = heatmap.attr("height"); 
 		var width = heatmap.attr("width");
 
-		var burnout = d3.select("#svg2"); 
+		var tower_temporal = d3.select("#svg2"); 
 		var height = burnout.attr("height"); 
 		var width = burnout.attr("width");
 
@@ -43,8 +43,8 @@
 			var tower_create = parseAct(data, 5);
 			var game_over = parseAct(data, 6);
 
-			create_heatmap(mouse_press, mouse_release, tower_create, heatmap);
-			//create_burnout(game_over, burnout);
+			var tower_metrics = map_tower_spatial(tower_create, 5, tower_spatial, false);
+			map_tower_temporal(tower_create, 5, tower_temporal, tower_metrics[0], tower_metrics[1]);
 			//create_histogram(player_quests, histogram);
 
 		});
