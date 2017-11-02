@@ -1,5 +1,5 @@
 function create_heatmap(mouse_press, mouse_release, tower_create, svg) { 
-    map_tower_spatial(tower_create, 0, svg);
+    map_tower_spatial(tower_create, 0, svg, false);
 }
 
 function map_tower_temporal(tower_data, level, svg){
@@ -8,7 +8,7 @@ function map_tower_temporal(tower_data, level, svg){
 
 
 
-function map_tower_height_spatial(tower_data, level, svg, includeMat){
+function map_tower_spatial(tower_data, level, svg, includeMat){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
