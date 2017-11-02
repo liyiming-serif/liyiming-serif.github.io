@@ -40,7 +40,7 @@ function parseAct(data, actType){
 
     //collect start time info on players
     var level_starttime = {};
-    var level_logs = JSON.parse(data)["player_quests"];
+    var level_logs = data["player_quests"];
     for(var i = 0; i < level_logs.length; i++){
         var quest = level_logs[i]["dynamic_quest_id"];
         var starttime = parseInt(level_logs[i]["server_timestamp"]);
