@@ -109,9 +109,9 @@ function map_mouse_clicks(mouse_data, level, svg){
 
     //graph dimensions
     var grid_size = 16;
-    svg.attr("width", buckets[0].length*grid_size)
-        .attr("height", buckets.length*grid_size);
     var colors = ['#ffffcc','#ffeda0','#fed976','#feb24c','#fd8d3c','#fc4e2a','#e31a1c','#bd0026','#800026'];
+    svg.attr("width", Math.max(buckets[0].length*grid_size, legend_width*colors.length))
+        .attr("height", buckets.length*grid_size + top_margin + legend_height);
 
     //create grid squares
     var colorScale = d3.scale.quantile()
@@ -192,9 +192,10 @@ function map_tower_spatial(tower_data, level, svg, normalizeHeight){
 
     //graph dimensions
     var grid_size = 32;
-    svg.attr("width", buckets[0].length*grid_size)
-        .attr("height", buckets.length*grid_size);
     var colors = ['#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a'];
+    svg.attr("width", Math.max(buckets[0].length*grid_size, legend_width*colors.length))
+        .attr("height", buckets.length*grid_size + top_margin + legend_height);
+    
 
     //create grid squares
     var colorScale = d3.scale.quantile()
