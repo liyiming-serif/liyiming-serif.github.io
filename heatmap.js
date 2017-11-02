@@ -6,7 +6,7 @@ function map_tower_temporal(tower_data, level, svg){
 
 }
 
-function map_mouse_tutorial_clicks(mouse_data, svg){
+function map_mouse_tutorial_clicks(mouse_data, level, svg){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;

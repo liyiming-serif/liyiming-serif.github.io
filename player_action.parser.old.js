@@ -32,24 +32,10 @@ function parseAct(data, actType){
             fields = ["Time","Level","X","Y","Materials"];
             break;
         case 6: //Game Over: Wave num:<> Level:<>
-            fields = ["Time","Wave Num","Level"];
+            fields = ["Wave Num","Level"];
             break;
         default:
             throw help;
-    }
-
-    //collect start time info on players
-    var player_starttime = {};
-    var player_logs = JSON.parse(data)["page_loads"];
-    for(var i = 0; i < player_logs.length; i++){
-        var player = player_logs[i]["user_id"];
-        var starttime = parseInt(player_logs[i]["server_timestamp"]);
-        if(!player_starttime.hasOwnProperty(player)){
-            player_starttime[player] = starttime;
-        }
-        else if(player_starttime[player]>starttime){
-            player_starttime[player] = starttime;
-        }
     }
 
     var input = data["player_actions"];
@@ -58,11 +44,11 @@ function parseAct(data, actType){
         if(input[i]["action_id"] == actType){ //action matches type!
             var entry = {};
             var entryValues = input[i]["action detail"].split(regex);
-
-            var player = input[i]["user_id"];
-            entry[fields[0]] = parseInt(input[i]["log_timestamp"])-player_starttime[player];
-            for(var j = 1; j < fields.length; j++){
-                if(isNaN(parseInt(entryValues[j]))){
+            for(var j = 0; j < fields.length; j++){
+                if(actType == 6){ //special case: Game Over log is off by one with regex.
+                    entry[fields[j]] = parseInt(entryValues[j+1]);
+                }
+                else if(isNaN(parseInt(entryValues[j]))){
                     entry[fields[j]] = entryValues[j];
                 }
                 else{
