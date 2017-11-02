@@ -6,7 +6,9 @@ function map_tower_temporal(tower_data, level, svg){
 
 }
 
-function map_tower_spatial(tower_data, level, svg){
+
+
+function map_tower_height_spatial(tower_data, level, svg, includeMat){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
@@ -32,7 +34,7 @@ function map_tower_spatial(tower_data, level, svg){
             x = buckets[y].length-1;
         }
 
-        buckets[y][x] += tower_data[i]["Materials"]; 
+        buckets[y][x] += includeMat ? tower_data[i]["Materials"] : 1; 
         if(buckets[y][x] > max_bucket_val){
             max_bucket_val = buckets[y][x];
         }
