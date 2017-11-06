@@ -14,23 +14,21 @@
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="https://d3js.org/topojson.v1.min.js"></script>
         <script src="heatmap.js"></script>
-        <script src="burnout.js"></script>
         <script src="player_action.parser.js"></script>
         <script src="get_params.js"></script>
     </head>
 
-    <p> <a href="histogram.html">Historgram</a> </p> 
+    <p> <a href="histogram.html">Histogram</a> </p> 
+    <p> <a href="burnout.html">Burnout</a> </p> 
 
     <svg id = "svg1" height= "100" width = "100"> </svg>
     <svg id = "svg2" height= "100" width = "100"> </svg>
     <svg id = "svg3" height= "100" width = "100"> </svg>
-    <svg id = "svg4" height= "500" width = "500"> </svg>
 
     <script> 
         var tower_spatial = d3.select("#svg1"); 
         var tower_temporal = d3.select("#svg2"); 
         var mouse_clicks = d3.select("#svg3");
-        var burnout = d3.select("#svg4");
 
         var qlevel = getLevel();
         var normal = isNormalized();
@@ -43,19 +41,9 @@
             var tower_metrics = map_tower_spatial(tower_create, qlevel, tower_spatial, normal);
             map_tower_temporal(tower_create, qlevel, tower_temporal, tower_metrics[0], tower_metrics[1]);
             map_mouse_clicks(mouse_release, qlevel, mouse_clicks);
-
-            create_burnout(mouse_press, burnout);
         });
-
-        d3.csv("data.csv", function(data) {
-        });
-
-
-
     
     </script> 
-
-
 
 </html> 
 
