@@ -13,7 +13,7 @@ function create_histogram(data, svg) {
 
     // Make histogram bins
     var group = Math.floor(Math.sqrt(data.length));
-    var histogram = d3.histogram()
+    var histogram = d3.layout.histogram()
         .value(function(d) { return d; })
         .domain(xScale.domain())
         .thresholds(xScale.ticks(group));
