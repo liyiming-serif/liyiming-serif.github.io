@@ -7,13 +7,13 @@ function create_histogram(data, svg) {
     var max = d3.max(data);
 
     // Histogram scales
-    var xScale = d3.scale.linear()
+    var xScale = d3.scaleLinear()
         .domain([min, max]).range([50, 550]);
-    var yScale = d3.scale.linear().range([520, 50]);
+    var yScale = d3.scaleLinear().range([520, 50]);
 
     // Make histogram bins
     var group = Math.floor(Math.sqrt(data.length));
-    var histogram = d3.layout.histogram()
+    var histogram = d3.histogram()
         .value(function(d) { return d; })
         .domain(xScale.domain())
         .thresholds(xScale.ticks(group));
