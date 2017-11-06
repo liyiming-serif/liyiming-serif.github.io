@@ -14,6 +14,8 @@
 		<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="https://d3js.org/topojson.v1.min.js"></script>
 		<script src="heatmap.js"></script>
+		<script src="burnout.js"></script>
+		<script src="histogram.js"></script>
 		<script src="player_action.parser.js"></script>
 		<script src="get_params.js"></script>
 	</head>
@@ -21,25 +23,46 @@
 	<p> D3 </p> 
 
 	<svg id = "svg1" height= "200" width = "200"> </svg>
-	<svg id = "svg2" height= "500" width = "500"> </svg>
+	<svg id = "svg2" height= "200" width = "200"> </svg>
 	<svg id = "svg3" height= "200" width = "200"> </svg>
+	<svg id = "svg4" height= "500" width = "500"> </svg>
+	<svg id = "svg5" height= "600" width = "800"> </svg>
 
 	<script> 
 		var tower_spatial = d3.select("#svg1"); 
 		var tower_temporal = d3.select("#svg2"); 
 		var mouse_clicks = d3.select("#svg3");
+		var burnout = d3.select("#svg4"); 
+		var histogram = d3.select("#svg5"); 
 
 		var level = getLevel();
 		var normal = isNormalized();
 
 		d3.json("data.v4.json", function(data) {
+			var player_quests = data.player_quests;
+
 			var mouse_press = parseAct(data, 1);
 			var mouse_release = parseAct(data, 2);
 			var tower_create = parseAct(data, 5);
+			var game_over = parseAct(data, 6);
 
 			var tower_metrics = map_tower_spatial(tower_create, level, tower_spatial, normal);
 			map_tower_temporal(tower_create, level, tower_temporal, tower_metrics[0], tower_metrics[1]);
 			map_mouse_clicks(mouse_release, level, mouse_clicks);
+
+			create_burnout(game_over, burnout);
+
+			var levels_completed = {0: 0, 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0, 10: 0, 11: 0};
+			var parsed_levels = new Array(12).fill(0);
+			var histogram_arr = [];
+			for (quest in player_quests) {
+				var level = player_quests[quest]['quest_id'];
+				levels_completed[level] += 1;
+				parsed_levels[level] += 1;
+				histogram_arr.push(level);
+			}
+			create_histogram(histogram_arr, histogram);
+
 
 		});
 
