@@ -1,9 +1,9 @@
 //@author: Katherine Tang
 
 function create_histogram(data, svg) { 
-	//console.log(data);
+    //console.log(data);
 
-	var min = d3.min(data);
+    var min = d3.min(data);
     var max = d3.max(data);
 
     // Histogram scales
