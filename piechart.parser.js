@@ -25,9 +25,9 @@ function parsePie(data){
         else{ //player won
             wins += 1;
         }
-        output.push({name:"Wins", count:wins});
-        output.push({name:"Quits", count:quits});
-        output.push({name:"Losses", count:losses});
     }
+    output.push({name:"Wins", count:wins});
+    output.push({name:"Quits", count:quits});
+    output.push({name:"Losses", count:losses});
     return output;
 };
