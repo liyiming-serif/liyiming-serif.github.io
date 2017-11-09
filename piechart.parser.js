@@ -1,10 +1,10 @@
 function parsePie(data){
     //build the dictionary of game overs
-    var losses = {};
+    var losses_dict = {};
     var actions = JSON.parse(data)["player_actions"];
     for(var i = 0; i < actions.length; i++){
         if(actions[i]["action_id"] == 6){ //hit a game over!
-            losses[actions[i]["dynamic quest id"]] = actions[i]["log_timestamp"];
+            losses_dict[actions[i]["dynamic quest id"]] = actions[i]["log_timestamp"];
         }
     }
 
@@ -19,7 +19,7 @@ function parsePie(data){
         if(loads[i]["end_timestamp"] == null){ //player quit
             quits += 1;
         }
-        else if(losses.hasOwnProperty(loads[i]["dynamic_quest_id"])){ //player lost
+        else if(losses_dict.hasOwnProperty(loads[i]["dynamic_quest_id"])){ //player lost
             losses += 1;
         }
         else{ //player won
