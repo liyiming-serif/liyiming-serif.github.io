@@ -19,15 +19,15 @@ function parsePie(data){
         if(loads[i]["end_timestamp"] == null){ //player quit
             quits += 1;
         }
-        output.push({name:"Quits", count:quits});
         else if(losses.hasOwnProperty(loads[i]["dynamic_quest_id"])){ //player lost
             losses += 1;
         }
-        output.push({name:"Losses", count:losses});
         else{ //player won
             wins += 1;
         }
         output.push({name:"Wins", count:wins});
+        output.push({name:"Quits", count:quits});
+        output.push({name:"Losses", count:losses});
     }
     return output;
 };
