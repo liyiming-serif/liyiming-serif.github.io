@@ -26,5 +26,5 @@ function create_piechart(data, svg) {
 		.enter()
 		.append('path')
 		.attr('d', arc)
-		.attr('fill', function(d){return colorScale(d.data.label); });
+		.attr('fill', function(d){return colorScale(d.data.name); });
 }
