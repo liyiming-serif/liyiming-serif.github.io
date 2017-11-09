@@ -5,13 +5,13 @@ function create_piechart(data, svg) {
 	const HEIGHT = 400;
 
 	svg.attr('width', WIDTH)
-		.attr('height', HEIGHT)
-		.append('g');
+		.attr('height', HEIGHT);
 
     var colors = ['#8dd3c7','#ffffb3','#bebada'];
     var colorScale = d3.scaleOrdinal()
         .range(colors);
-    //.attr('transform', 'translate('+(WIDTH/2)+ ','+(HEIGHT/2)+')');
+    svg.append('g')
+    	.attr('transform', 'translate('+(WIDTH/2)+','+(HEIGHT/2)+')');
 
     var radius = Math.min(WIDTH,HEIGHT)/2;
     var arc = d3.arc()
