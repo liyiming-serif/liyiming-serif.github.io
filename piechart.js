@@ -1,6 +1,7 @@
 //@author: Yiming Li
 
 function create_piechart(data, svg) { 
+	console.log(JSON.stringify(data));
 	const WIDTH = 400;
 	const HEIGHT = 400;
 
