@@ -1,13 +1,16 @@
 //@author: Yiming Li
 
 function create_piechart(data, svg) { 
+	const WIDTH = svg.getBoundingClientRect().width;
+	const HEIGHT = svg.getBoundingClientRect().height;
+
     var colors = ['#8dd3c7','#ffffb3','#bebada'];
     var colorScale = d3.scaleOrdinal()
         .range(colors);
     svg.append('g')
-    	.attr('transform', 'translate('+(svg.style("width")/2)+ ','+(svg.style("height")/2)+')');
+    	.attr('transform', 'translate('+(WIDTH/2)+ ','+(HEIGHT/2)+')');
 
-    var radius = Math.min(svg.style("width"),svg.style("height"))/2;
+    var radius = Math.min(WIDTH,HEIGHT)/2;
     var arc = d3.arc()
 		.innerRadius(0)
 		.outerRadius(radius);
