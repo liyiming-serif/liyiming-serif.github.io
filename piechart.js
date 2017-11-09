@@ -5,8 +5,8 @@ function create_piechart(data, svg) {
 	const HEIGHT = 400;
 
 	svg.attr('width', WIDTH)
-		.attr('height', HEIGHT)
-		.append('g')
+		.attr('height', HEIGHT);
+	var group = svg.append('g')
     	.attr('transform', 'translate('+(WIDTH/2)+','+(HEIGHT/2)+')');
 
     var colors = ['#8dd3c7','#ffffb3','#bebada'];
@@ -20,10 +20,10 @@ function create_piechart(data, svg) {
 	var pie = d3.pie()
 		.value(function(d){return d.count; })
 		.sort(null);
-	var path = svg.selectAll('path')
+	var path = group.selectAll('path')
 		.data(pie(data))
 		.enter()
 		.append('path')
 		.attr('d', arc)
-		.attr('fill', function(d,i){return colorScale(d.data.label); });
+		.attr('fill', function(d){return colorScale(d.data.label); });
 }
