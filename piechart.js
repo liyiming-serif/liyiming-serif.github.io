@@ -1,8 +1,11 @@
 //@author: Yiming Li
 
 function create_piechart(data, svg) { 
-	const WIDTH = svg.getBoundingClientRect().width;
-	const HEIGHT = svg.getBoundingClientRect().height;
+	const WIDTH = 400;
+	const HEIGHT = 400;
+
+	svg.attr('width', WIDTH)
+		.attr('height', HEIGHT);
 
     var colors = ['#8dd3c7','#ffffb3','#bebada'];
     var colorScale = d3.scaleOrdinal()
