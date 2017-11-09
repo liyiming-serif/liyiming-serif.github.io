@@ -5,7 +5,7 @@ function create_piechart(data, svg) {
     var colorScale = d3.scaleOrdinal()
         .range(colors);
     svg.append('g')
-    	.attr('transform', 'translate(' + (width / 2) +  ',' + (height / 2) + ')');
+    	.attr('transform', 'translate('+(svg.style("width")/2)+ ','+(svg.style("height")/2)+')');
 
     var radius = Math.min(svg.style("width"),svg.style("height"))/2;
     var arc = d3.arc()
