@@ -15,8 +15,9 @@ function create_piechart(data, svg) {
         .range(colors);
 
     var radius = Math.min(WIDTH,HEIGHT)/2;
+    var holeRadius = 75;
     var arc = d3.arc()
-		.innerRadius(0)
+		.innerRadius(holeRadius)
 		.outerRadius(radius);
 	var pie = d3.pie()
 		.value(function(d){return d.count; })
