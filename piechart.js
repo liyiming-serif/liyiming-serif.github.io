@@ -18,9 +18,8 @@ function create_piechart(data, svg) {
 
     //create donut chart
     var radius = Math.min(WIDTH,HEIGHT)/2;
-    var holeRadius = radius/2;
     var arc = d3.arc()
-		.innerRadius(holeRadius)
+		.innerRadius(radius/2)
 		.outerRadius(radius);
 	var pie = d3.pie()
 		.value(function(d){return d.count; })
@@ -33,8 +32,8 @@ function create_piechart(data, svg) {
 		.attr('fill', function(d){return colorScale(d.data.name); });
 
 	//add legend
-	const squareSize = 16;
-	const squareSpace = 4;
+	const SQUARESIZE = 16;
+	const SQUARESPACE = 4;
 	//create placeholders of every legend element. var legend holds ALL elements
 	var legend = group.selectAll('.mono')
 		.data(colorScale.domain())
@@ -42,21 +41,21 @@ function create_piechart(data, svg) {
 		.append('g')
 		.attr('class', 'mono')
 		.attr('transform', function(d, i){
-			var height = squareSize + squareSpace;
+			var height = SQUARESIZE + SQUARESPACE;
 			var vOffset = height * colorScale.domain().length/2;
-			var h = -2*squareSize; //arbitrary
+			var h = -2*SQUARESIZE; //arbitrary
 			var v = i*height-vOffset;
 			return 'translate('+h+','+v+')';
 		});
 	//add a rect to every legend element
 	legend.append('rect')
-		.attr('width', squareSize)
-	    .attr('height', squareSize)
+		.attr('width', SQUARESIZE)
+	    .attr('height', SQUARESIZE)
 	    .style('fill', colorScale)
 	    .style('stroke', colorScale);
 	//add text to every legend element
 	legend.append('text')
-		.attr('x', squareSize + squareSpace)
-		.attr('y', squareSize - squareSpace) //arbitrary, relative to each container
+		.attr('x', SQUARESIZE + SQUARESPACE)
+		.attr('y', SQUARESIZE - SQUARESPACE) //arbitrary, relative to each container
 		.text(function(d){return d; }); //<- will be fed colorScale.domain()
 }
