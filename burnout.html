@@ -10,17 +10,16 @@
         <script src="https://d3js.org/topojson.v1.min.js"></script>
         <script src="burnout.js"></script>
         <script src="player_action.parser.js"></script>
-        <script src="get_params.js"></script>
     </head>
 
     <p> <a href="histogram.html">Histogram</a> </p> 
     <p> <a href="index.html">Heatmap</a> </p> 
     <p> <a href="piechart.html">Pie Chart</a> </p> 
 
-    <svg id = "svg4" height= "500" width = "500"> </svg>
+    <svg id = "svg1" height= "500" width = "500"> </svg>
 
     <script> 
-        var burnout = d3.select("#svg4");
+        var burnout = d3.select("#svg1");
 
         d3.json("data.v4.json", function(data) {
             var mouse_press = parseAct(data, 1);
