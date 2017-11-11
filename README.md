@@ -2,6 +2,11 @@ Analytics README
 ================  
 Wiki for getting data from the GDIAC server, then processing it with d3.  
   
+Viewing Analytics
+-----------------
+Analytics can be viewed at 
+Find the most up to date source code at https://github.com/liyiming-serif/liyiming-serif.github.io/
+
 Fetching JSON:
 --------------
 Run fetch_data.json: `node fetch_data.js <version> <offset>`  
@@ -10,12 +15,12 @@ fetch_data.json will return the json data in `data.v<version>.json`
   
 Event-driven Logging:  
 ---------------------  
-mouse press pos (x,y,time) = 1  
-mouse release pos (x,y,time) = 2  
-health change (hp, time) = 3  
-wave start(currency, wave num, towers destroyed, time) = 4  
-tower build(position (x,y), materials, time) = 5  
-game over (wave num, level num) = 6  
+mouse press pos (Time, Level, X, Y) = 1  
+mouse release pos (Time, Level, X, Y) = 2  
+health change (Time, Level, HP) = 3  
+wave start(Time, Level, Money, Wave, Towers Killed) = 4  
+tower build(Time, Level, X, Y, Materials) = 5  
+game over (Time, Wave Num, Level) = 6  
 
 Structure:
 ----------
@@ -26,3 +31,16 @@ Structure:
         2.  look into the get_csv.php  
 *   parse player actions.js
 *   index.html -> d3
+
+AB Testing:  
+-----------  
+A: Click anywhere to build tower, unlimited resources  
+B: Click only on specific squares, more puzzle direction  
+  
+A: Click anywhere to build tower, unlimited resources  
+B: Limited resources at the beginning of wave  
+  
+TODO:  
+-----  
+*   put all heatmaps on single page
+*   label axes for heatmaps
