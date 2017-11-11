@@ -12,7 +12,7 @@ function create_piechart(data, svg) {
 	var group = svg.append('g')
     	.attr('transform', 'translate('+(WIDTH/2)+','+(HEIGHT/2)+')');
 
-    var colors = ['#8dd3c7','#ffffb3','#bebada'];
+    var colors = ['#1b9e77','#d95f02','#7570b3'];
     var colorScale = d3.scaleOrdinal()
         .range(colors);
 
