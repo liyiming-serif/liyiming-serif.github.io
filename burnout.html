@@ -21,7 +21,7 @@
     <script> 
         var burnout = d3.select("#svg1");
 
-        d3.json("data.v4.json", function(data) {
+        d3.json("data.json", function(data) {
             var mouse_press = parseAct(data, 1);
 
             create_burnout(mouse_press, burnout);

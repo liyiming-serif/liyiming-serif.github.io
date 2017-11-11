@@ -10,8 +10,8 @@ Find the most up to date source code at https://github.com/liyiming-serif/liyimi
 Fetching JSON:
 --------------
 Run fetch_data.json: `node fetch_data.js <version> <offset>`  
-You'll need to manually check that count >= player_quest entries in order to get the entire dataset. Go to the server site and increase the offset until you there's no more data sets: `http://gdiac.cs.cornell.edu/cs4154/fall2017/get_data.php?game_id=771&version_id=4&offset=<PLAY WITH THIS VALUE>`  
-fetch_data.json will return the json data in `data.v<version>.json`  
+You'll need to manually check that count >= player_quest entries in order to get the entire dataset. Go to the server site and increase the offset until you there's no more data sets: `http://gdiac.cs.cornell.edu/cs4154/fall2017/get_data.php?game_id=771&version_id=<ver num>&offset=<ADJUST THIS VALUE>`  
+fetch_data.json will return the json data in `data.json`  
   
 Event-driven Logging:  
 ---------------------  

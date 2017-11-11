@@ -34,7 +34,7 @@
         var qlevel = getLevel();
         var normal = isNormalized();
 
-        d3.json("data.v4.json", function(data) {
+        d3.json("data.json", function(data) {
             var mouse_press = parseAct(data, 1);
             var mouse_release = parseAct(data, 2);
             var tower_create = parseAct(data, 5);

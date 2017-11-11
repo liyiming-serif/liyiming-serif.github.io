@@ -23,7 +23,7 @@ var req = http.get(getUrl, function(res){
     res.on('end', function(){
         jsonData = JSON.parse(body);
         output = JSON.stringify(jsonData, null, 2);
-        fs.writeFile("data.v"+version+".json", output, function(e){
+        fs.writeFile("data.json", output, function(e){
             if(e){
                 console.log(e);
             }
