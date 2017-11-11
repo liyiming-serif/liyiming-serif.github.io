@@ -4,7 +4,7 @@ Wiki for getting data from the GDIAC server, then processing it with d3.
   
 Viewing Analytics
 -----------------
-Analytics can be viewed at 
+Analytics can be viewed at http://liyiming-serif.github.io/  
 Find the most up to date source code at https://github.com/liyiming-serif/liyiming-serif.github.io/
 
 Fetching JSON:
