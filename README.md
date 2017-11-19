@@ -19,8 +19,9 @@ mouse press pos (Time, Level, X, Y) = 1
 mouse release pos (Time, Level, X, Y) = 2  
 health change (Time, Level, HP) = 3  
 wave start(Time, Level, Money, Wave, Towers Killed) = 4  
-tower build(Time, Level, X, Y, Materials) = 5  
+tower build(Time, Level, X, Y, Materials, Height) = 5  
 game over (Time, Wave Num, Level) = 6  
+level win (Time, Level) = 7
 
 Structure:
 ----------
@@ -34,13 +35,17 @@ Structure:
 
 AB Testing:  
 -----------  
-A: Click anywhere to build tower, unlimited resources  
-B: Click only on specific squares, more puzzle direction  
-  
-A: Click anywhere to build tower, unlimited resources  
-B: Limited resources at the beginning of wave  
+A: Game doesn't pause during tower creation  
+B: Game pauses when building tower  
   
 TODO:  
 -----  
-*   put all heatmaps on single page
-*   label axes for heatmaps
+*   label axes for heatmaps  
+  
+Updates:  
+--------  
+"Time" in player actions now tracks the number of seconds the event was recorded from the time the player started up the level.  
+  
+New action event: 7. Jots down when a player beats a level and which one.  
+  
+The "Tower Build" event tracks height of tower placed under the property "Height" (previously under the "Materials" property). The "Materials" property is now an array of materials:Int.    

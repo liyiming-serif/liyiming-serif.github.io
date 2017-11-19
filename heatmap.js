@@ -23,7 +23,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
                 t = buckets.length-1;
             }
             
-            for (var h = 0; h < tower_data[i]["Materials"]; h++){
+            for (var h = 0; h < tower_data[i]["Height"]; h++){
                 buckets[t][h] += 1;
                 if(buckets[t][h] > max_bucket_val){
                     max_bucket_val = buckets[t][h];
@@ -176,7 +176,7 @@ function map_tower_spatial(tower_data, level, svg, normalizeHeight){
                 x = buckets[y].length-1;
             }
 
-            buckets[y][x] += normalizeHeight ? tower_data[i]["Materials"] : 1; 
+            buckets[y][x] += normalizeHeight ? tower_data[i]["Height"] : 1; 
             if(buckets[y][x] > max_bucket_val){
                 max_bucket_val = buckets[y][x];
             }
@@ -184,8 +184,8 @@ function map_tower_spatial(tower_data, level, svg, normalizeHeight){
             if(tower_data[i]["Time"] > max_time){
                 max_time = tower_data[i]["Time"];
             }
-            if(tower_data[i]["Materials"] > max_height){
-                max_height = tower_data[i]["Materials"];
+            if(tower_data[i]["Height"] > max_height){
+                max_height = tower_data[i]["Height"];
             }
         }
     }
