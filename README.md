@@ -18,7 +18,7 @@ Event-driven Logging:
 mouse press pos (Time, Level, X, Y) = 1  
 mouse release pos (Time, Level, X, Y) = 2  
 health change (Time, Level, HP) = 3  
-wave start(Time, Level, Money, Wave, Towers Killed) = 4  
+wave start(Time, Level, Wave, Towers Killed) = 4  
 tower build(Time, Level, X, Y, Materials, Height) = 5  
 game over (Time, Wave Num, Level) = 6  
 level win (Time, Level) = 7
