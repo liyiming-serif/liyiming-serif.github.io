@@ -134,8 +134,8 @@ function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax, title){
     //annotate axes
     svg.append("text")
         .text(title)
-        .attr("x", 800)
-        .attr("y", 600)
+        .attr("x", 100)
+        .attr("y", 100)
         .attr("class", "mono");
     
     //create legend
