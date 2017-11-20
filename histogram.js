@@ -31,11 +31,11 @@ function create_histogram(data, svg) {
     var xAxis = d3.axisBottom(xScale).tickValues(ticks)
         .tickFormat(d3.format("1"));       
     svg.append("g")
-       .attr("transform", "translate(0, 520)").call(xAxis);
+       .attr("transform", "translate(25, 520)").call(xAxis);
             
     var yAxis = d3.axisLeft(yScale);
     svg.append("g")
-       .attr("transform", "translate(45,0)").call(yAxis);
+       .attr("transform", "translate(72,0)").call(yAxis);
 
     var margin = {top: 20, right: 20, bottom: 50, left: 70};
     svg.append("text")
@@ -63,7 +63,7 @@ function create_histogram(data, svg) {
     svg.selectAll("rect").data(bins)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return xScale((d.x0+d.x1)/2.0) + 100; })
+        .attr("x", function(d) { return xScale((d.x0+d.x1)/2.0) + 25; })
         .attr("y", function(d) { return yScale(d.length); })
         .attr("height", function(d) { return 520 - yScale(d.length); })
         .attr("width", 50)
