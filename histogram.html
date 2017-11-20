@@ -5,6 +5,7 @@
         </style>
         <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
         <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <script src="player_action.parser.js"></script>
         <script src="histogram.js"></script>
     </head>
 
@@ -18,12 +19,13 @@
         var histogram = d3.select("#svg1");
 
         d3.json("data.json", function(data) {
-            var player_quests = data.player_quests;
+            var tower_builds = parseAct(data,5);
 
             var histogram_arr = []
-            for (quest in player_quests) {
-                var level = player_quests[quest]['quest_id'];
-                histogram_arr.push(level);
+            for (var i = 0; i < tower_builds.length; i++) {
+                materials = tower_builds[i]["Materials"];
+                for (var j = 0; j < materials.length; j++)
+                    histogram_arr.push(materials[j]);
             }
             create_histogram(histogram_arr, histogram);
         });
