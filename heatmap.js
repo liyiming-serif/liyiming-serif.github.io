@@ -1,6 +1,5 @@
 var legend_width = 72;
 var legend_height = 24;
-var axes_margin = 
 var top_margin = 24;
 
 function map_tower_temporal(tower_data, svg, max_time, max_height, levelRangeMin, levelRangeMax){
