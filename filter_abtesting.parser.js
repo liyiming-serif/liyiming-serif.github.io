@@ -13,7 +13,7 @@ function filterAB(data){
     a_output["page_loads"] = [];
     b_output["page_loads"] = [];
     var page_loads = data["page_loads"];
-    for(int i = 0; i < page_loads.length; i++){
+    for(var i = 0; i < page_loads.length; i++){
         var player_id = page_loads[i]["user_id"];
         if(ab_dict.hasOwnProperty(player_id)){
             if(ab_dict[player_id]==1){
@@ -29,7 +29,7 @@ function filterAB(data){
     a_output["player_quests"] = [];
     b_output["player_quests"] = [];
     var player_quests = data["player_quests"];
-    for(int i = 0; i < player_quests.length; i++){
+    for(var i = 0; i < player_quests.length; i++){
         var player_id = player_quests[i]["user_id"];
         if(ab_dict.hasOwnProperty(player_id)){
             if(ab_dict[player_id]==1){
@@ -45,7 +45,7 @@ function filterAB(data){
     a_output["player_actions"] = [];
     b_output["player_actions"] = [];
     var player_actions = data["player_actions"];
-    for(int i = 0; i < player_actions.length; i++){
+    for(var i = 0; i < player_actions.length; i++){
         var player_id = player_quests[i]["user_id"];
         if(ab_dict.hasOwnProperty(player_id)){
             if(ab_dict[player_id]==1){
