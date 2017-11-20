@@ -44,19 +44,19 @@ function create_histogram(data, svg) {
       .attr("x","-300")
       .attr("dy", "1em")
       .style("text-anchor", "middle")
-      .text("Number of Players");
+      .text("Total Used");
 
     svg.append("text")             
       .attr("transform",
             "translate(370,570)")
       .style("text-anchor", "middle")
-      .text("Level Number");
+      .text("Materials");
 
     svg.append("text")             
       .attr("transform",
             "translate(370,50)")
       .style("text-anchor", "middle")
-      .text("Number of Players vs Levels");
+      .text("Materials Used for Building Towers");
 
 
     // Histogram bars
