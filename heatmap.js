@@ -1,5 +1,6 @@
 var legend_width = 72;
 var legend_height = 24;
+var axes_margin = 
 var top_margin = 24;
 
 function map_tower_temporal(tower_data, svg, max_time, max_height, levelRangeMin, levelRangeMax){
@@ -73,7 +74,7 @@ function map_tower_temporal(tower_data, svg, max_time, max_height, levelRangeMin
     }
 }
 
-function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax, title){
+function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
@@ -130,13 +131,6 @@ function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax, title){
                 .attr("fill", colorScale(buckets[y][x]));
         }
     }
-
-    //annotate axes
-    svg.append("text")
-        .text(title)
-        .attr("x", 100)
-        .attr("y", 100)
-        .attr("class", "mono");
     
     //create legend
     var thresholds = [0].concat(colorScale.quantiles());
