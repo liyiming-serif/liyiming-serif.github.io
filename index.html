@@ -4,7 +4,7 @@
             text.mono {
                 font-size: 11pt;
                 font-family: Consolas, courier;
-                fill: #0EA591;
+                fill: #00A08B;
             }
             svg {border: 1px solid black;}
             .axis path {fill: none; stroke: black;}
@@ -41,14 +41,20 @@
             map_mouse_clicks(mouse_clicks_a, graph_a, 0, 12);
             graph_a.append("text")
                 .text("A")
+                .attr("x", 800)
+                .attr("y", 600)
                 .attr("class", "mono");
             map_mouse_clicks(mouse_clicks_b, graph_b, 0, 12);
             graph_b.append("text")
                 .text("B")
+                .attr("x", 800)
+                .attr("y", 600)
                 .attr("class", "mono");
             map_mouse_clicks(mouse_clicks, graph_tut, 0, 1);
             graph_tut.append("text")
                 .text("Tutorial")
+                .attr("x", 800)
+                .attr("y", 600)
                 .attr("class", "mono");
         });
     
