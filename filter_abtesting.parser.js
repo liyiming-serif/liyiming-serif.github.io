@@ -5,7 +5,7 @@ function filterAB(data){
     for(var i = 0; i < ab_data.length; i++){
         ab_dict[ab_data["user_id"]] = parseInt(ab_data["ab_testing_value"]);
     }
-    console.log(ab_dict);
+    console.log(ab_data);
 
     var a_output = {};
     var b_output = {};
