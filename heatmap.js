@@ -73,7 +73,7 @@ function map_tower_temporal(tower_data, svg, max_time, max_height, levelRangeMin
     }
 }
 
-function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax){
+function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax, title){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
@@ -130,6 +130,13 @@ function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax){
                 .attr("fill", colorScale(buckets[y][x]));
         }
     }
+
+    //annotate axes
+    svg.append("text")
+        .text(title)
+        .attr("x", 800)
+        .attr("y", 600)
+        .attr("class", "mono");
     
     //create legend
     var thresholds = [0].concat(colorScale.quantiles());
