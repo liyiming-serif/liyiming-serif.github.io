@@ -46,7 +46,7 @@ function filterAB(data){
     b_output["player_actions"] = [];
     var player_actions = data["player_actions"];
     for(var i = 0; i < player_actions.length; i++){
-        var player_id = player_quests[i]["user_id"];
+        var player_id = player_actions[i]["user_id"];
         if(ab_dict.hasOwnProperty(player_id)){
             if(ab_dict[player_id]==1){
                 a_output["player_actions"].push(player_actions[i]);
