@@ -48,13 +48,13 @@ function create_histogram(data, svg) {
 
     svg.append("text")             
       .attr("transform",
-            "translate(120,570)")
+            "translate(250,570)")
       .style("text-anchor", "middle")
       .text("Materials");
 
     svg.append("text")             
       .attr("transform",
-            "translate(120,30)")
+            "translate(250,30)")
       .style("text-anchor", "middle")
       .text("Materials Used for Building Towers");
 
