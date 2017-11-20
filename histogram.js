@@ -6,7 +6,7 @@ function create_histogram(data, svg) {
 
     // Histogram scales
     var xScale = d3.scaleLinear()
-        .domain([min, max]).range([50, 550]);
+        .domain([min, max]).range([50, 350]);
     var yScale = d3.scaleLinear().range([520, 50]);
 
     // Make histogram bins
