@@ -2,7 +2,7 @@ var legend_width = 72;
 var legend_height = 24;
 var top_margin = 24;
 
-function map_tower_temporal(tower_data, level, svg, max_time, max_height){
+function map_tower_temporal(tower_data, svg, max_time, max_height, levelRangeMin, levelRangeMax){
     
     const timestep = 10; //time in seconds
     
@@ -17,7 +17,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     var max_bucket_val = 0;
     //fill buckets with tower data
     for (var i = 0; i<tower_data.length; i++){
-        if(tower_data[i]["Level"] == level){
+        if(levelRangeMin <= tower_data[i]["Level"] && tower_data[i]["Level"] <= levelRangeMax){
             var t = Math.floor(tower_data[i]["Time"]/timestep);
             if(t>=buckets.length){
                 t = buckets.length-1;
@@ -73,7 +73,7 @@ function map_tower_temporal(tower_data, level, svg, max_time, max_height){
     }
 }
 
-function map_mouse_clicks(mouse_data, level, svg){
+function map_mouse_clicks(mouse_data, svg, levelRangeMin, levelRangeMax){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
@@ -90,7 +90,7 @@ function map_mouse_clicks(mouse_data, level, svg){
     var max_bucket_val = 0;
     //fill buckets with mouse_release data
     for (var i = 0; i<mouse_data.length; i++){
-        if(mouse_data[i]["Level"] == level){
+        if(levelRangeMin <= mouse_data[i]["Level"] && mouse_data[i]["Level"] <= levelRangeMax){
             var x = Math.floor(mouse_data[i]["X"]/snap);
             var y = Math.floor(mouse_data[i]["Y"]/snap);
             if(y>=buckets.length){
@@ -148,7 +148,7 @@ function map_mouse_clicks(mouse_data, level, svg){
     }
 }
 
-function map_tower_spatial(tower_data, level, svg, normalizeHeight){
+function map_tower_spatial(tower_data, svg, normalizeHeight, levelRangeMin, levelRangeMax){
     //game dimensions
     const GAME_WIDTH = 960;
     const GAME_HEIGHT = 720;
@@ -166,7 +166,7 @@ function map_tower_spatial(tower_data, level, svg, normalizeHeight){
     //populate buckets with tower data
     var max_height = 0, max_time = 0;
     for (var i = 0; i<tower_data.length; i++){
-        if(tower_data[i]["Level"] == level){
+        if(levelRangeMin <= tower_data[i]["Level"] && tower_data[i]["Level"] <= levelRangeMax){
             var x = Math.floor(tower_data[i]["X"]/snap);
             var y = Math.floor(tower_data[i]["Y"]/snap);
             if(y>=buckets.length){

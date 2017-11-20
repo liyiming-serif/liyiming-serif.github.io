@@ -4,7 +4,7 @@
             text.mono {
                 font-size: 9pt;
                 font-family: Consolas, courier;
-                fill: #aaa;
+                fill: #1fc4a6;
             }
             svg {border: 1px solid black;}
             .axis path {fill: none; stroke: black;}
@@ -13,9 +13,9 @@
         </style>
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <script src="filter_abtesting.parser.js"></script>
         <script src="heatmap.js"></script>
         <script src="player_action.parser.js"></script>
-        <script src="get_params.js"></script>
     </head>
 
     <p> <a href="histogram.html">Histogram</a> </p> 
@@ -27,21 +27,20 @@
     <svg id = "svg3" height= "100" width = "100"> </svg>
 
     <script> 
-        var tower_spatial = d3.select("#svg1"); 
-        var tower_temporal = d3.select("#svg2"); 
-        var mouse_clicks = d3.select("#svg3");
-
-        var qlevel = getLevel();
-        var normal = isNormalized();
+        var graph_a = d3.select("#svg1"); 
+        var graph_b = d3.select("#svg2"); 
+        var graph_tut = d3.select("#svg3");
 
         d3.json("data.json", function(data) {
-            var mouse_press = parseAct(data, 1);
-            var mouse_release = parseAct(data, 2);
-            var tower_create = parseAct(data, 5);
+            ab_data = filterAB(data);
 
-            var tower_metrics = map_tower_spatial(tower_create, qlevel, tower_spatial, normal);
-            map_tower_temporal(tower_create, qlevel, tower_temporal, tower_metrics[0], tower_metrics[1]);
-            map_mouse_clicks(mouse_release, qlevel, mouse_clicks);
+            var mouse_clicks_a = parseAct(ab_data[0], 2);
+            var mouse_clicks_b = parseAct(ab_data[1], 2);
+            var mouse_clicks = parseAct(data, 2);
+
+            map_mouse_clicks(mouse_clicks_a, graph_a, 0, 12);
+            map_mouse_clicks(mouse_clicks_b, graph_b, 0, 12);
+            map_mouse_clicks(mouse_clicks, graph_tut, 0, 1);
         });
     
     </script> 
