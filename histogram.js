@@ -63,7 +63,7 @@ function create_histogram(data, svg) {
     svg.selectAll("rect").data(bins)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", function(d) { return xScale((d.x0+d.x1)/2.0) + 25; })
+        .attr("x", function(d) { return xScale((d.x0+d.x1)/2.0) + 27; })
         .attr("y", function(d) { return yScale(d.length); })
         .attr("height", function(d) { return 520 - yScale(d.length); })
         .attr("width", 50)
