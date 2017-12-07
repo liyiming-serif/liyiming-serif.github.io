@@ -11,11 +11,11 @@ function create_burnout(data, fdata, ndata, svg) {
 
 	//% remaining, level
 	var height = 500; 
-	var width = 600; 
+	var width = 700; 
 	var padding = 50; 
 	
 	var xScale = d3.scale.linear()
-				.domain([0, 600])
+				.domain([0, 700])
 				.range([padding, width-30]); 
 	var yScale = d3.scale.linear()
 				.domain([0, 100])
@@ -43,19 +43,19 @@ function create_burnout(data, fdata, ndata, svg) {
 		.text("Total Time Played in Seconds");
 
 	svg.append("text")
-		.attr("transform", "translate(450,50)")
+		.attr("transform", "translate(500,50)")
 		.attr("stroke", "green")
 		.attr("stroke-width", 0.5)
 		.text("Friends Release");
 
 	svg.append("text")
-		.attr("transform", "translate(450,80)")
+		.attr("transform", "translate(500,80)")
 		.attr("stroke", "red")
 		.attr("stroke-width", 0.5)
 		.text("Newgrounds Release");
 
 	svg.append("text")
-		.attr("transform", "translate(450,110)")
+		.attr("transform", "translate(500,110)")
 		.attr("stroke", "steelblue")
 		.attr("stroke-width", 0.5)
 		.text("Kongregate Release");
@@ -103,13 +103,13 @@ function create_burnout(data, fdata, ndata, svg) {
 
 function filterData(data) {
 	total_time_played = {};
-	total_time_played[600] = 0;
+	total_time_played[700] = 0;
 	for (d in data) {
 		time = data[d]['total_time_played']
 		if (time in total_time_played) {
 			total_time_played[time] += 1;
-		} else if (!(time in total_time_played) && time > 600) {
-			total_time_played[600] += 1;
+		} else if (!(time in total_time_played) && time > 700) {
+			total_time_played[700] += 1;
 		} else {
 			total_time_played[time] = 1;
 		}
