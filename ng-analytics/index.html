@@ -1,0 +1,52 @@
+<html> 
+    <head>
+        <style>
+            text.mono {
+                font-size: 11pt;
+                font-family: Consolas, courier;
+                fill: #00A08B;
+            }
+            svg {border: 1px solid black;}
+            .axis path {fill: none; stroke: black;}
+            .axis line {stroke: black;}
+            .axis text {font-size: 10pt;}
+        </style>
+        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+        <script src="https://d3js.org/topojson.v1.min.js"></script>
+        <script src="filter_abtesting.parser.js"></script>
+        <script src="heatmap.js"></script>
+        <script src="player_action.parser.js"></script>
+    </head>
+
+    <p> <a href="histogram.html">Histogram</a> </p> 
+    <p> <a href="burnout.html">Burnout</a> </p> 
+    <p> <a href="piechart.html">Pie Chart</a> </p> 
+
+    <svg id = "svg1" height= "100" width = "100"> </svg>
+    <p>A Test</p> 
+    <svg id = "svg2" height= "100" width = "100"> </svg>
+    <p>B Test</p> 
+    <svg id = "svg3" height= "100" width = "100"> </svg>
+    <p>Tutorial</p> 
+
+    <script> 
+        var graph_a = d3.select("#svg1"); 
+        var graph_b = d3.select("#svg2"); 
+        var graph_tut = d3.select("#svg3");
+
+        d3.json("data.json", function(data) {
+            ab_data = filterAB(data);
+
+            var mouse_clicks_a = parseAct(ab_data[0], 2);
+            var mouse_clicks_b = parseAct(ab_data[1], 2);
+            var mouse_clicks = parseAct(data, 2);
+
+            map_mouse_clicks(mouse_clicks_a, graph_a, 0, 12);
+            map_mouse_clicks(mouse_clicks_b, graph_b, 0, 12);
+            map_mouse_clicks(mouse_clicks, graph_tut, 0, 1);
+        });
+    
+    </script> 
+
+</html> 
+
