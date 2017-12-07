@@ -16,15 +16,18 @@
     <p> <a href="index.html">Heatmap</a> </p> 
     <p> <a href="piechart.html">Pie Chart</a> </p> 
 
-    <svg id = "svg1" height= "500" width = "500"> </svg>
+    <svg id = "svg1" height= "500" width = "600"> </svg>
 
     <script> 
         var burnout = d3.select("#svg1");
 
-        d3.json("data.json", function(data) {
-            var mouse_press = parseAct(data, 1);
-
-            create_burnout(mouse_press, burnout);
+        d3.csv("data.csv", function(data) {
+            //var mouse_press = parseAct(data, 1);
+            d3.csv("data_friends.csv", function(fdata) {
+                d3.csv("data_newgrounds.csv", function(ndata) {
+                    create_burnout(data, fdata, ndata, burnout);
+                });
+            });
         });   
     </script> 
 </html> 
