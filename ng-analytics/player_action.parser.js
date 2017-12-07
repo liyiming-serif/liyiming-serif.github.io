@@ -30,7 +30,7 @@ function parseAct(data, actType){
             fields = ["Time","Level","Wave","Towers Killed"];
             break;
         case 5: //Tower Create: Level:<> x:<> y:<> Materials:<> Height:<>
-            fields = ["Time","Level","X","Y","Materials","Height"];
+            fields = ["Time","Level","X","Y","Materials"];
             break;
         case 6: //Game Over: Wave num:<> Level:<>
             fields = ["Time","Wave Num","Level"];
@@ -69,6 +69,7 @@ function parseAct(data, actType){
                 if(isNaN(parseInt(entryValues[j]))){
                     try{
                         entry[fields[j]] = JSON.parse(entryValues[j]);
+                        entry["Height"] = entry[fields[j]].length-1;
                     }
                     catch(err){
                         entry[fields[j]] = entryValues[j];

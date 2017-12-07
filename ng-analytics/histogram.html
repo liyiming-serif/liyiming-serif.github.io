@@ -24,8 +24,11 @@
             var histogram_arr = []
             for (var i = 0; i < tower_builds.length; i++) {
                 materials = tower_builds[i]["Materials"];
-                for (var j = 0; j < materials.length; j++)
-                    histogram_arr.push(materials[j]);
+                for (var j = 0; j < materials.length; j++){
+                    if (0<=materials[j] && materials[j]<6){ //check that it's a valid material
+                        histogram_arr.push(materials[j]);
+                    }
+                }
             }
             console.log(histogram_arr);
             create_histogram(histogram_arr, histogram);
